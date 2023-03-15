@@ -41,7 +41,10 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $book->title = $request->input('title');
+        $book->save();
+
+        return $book;
     }
 
     /**
