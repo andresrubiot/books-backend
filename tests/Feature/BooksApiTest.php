@@ -24,4 +24,18 @@ class BooksApiTest extends TestCase
             ]);
         }
     }
+
+    /** @test */
+    public function can_get_one_book()
+    {
+        $book = Book::factory()->create();
+
+        $response = $this->getJson(route('books.show', $book));
+
+        $response->assertJsonFragment([
+            'title' => $book->title
+        ]);
+    }
+
+
 }
