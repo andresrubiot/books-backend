@@ -91,4 +91,17 @@ class BooksApiTest extends TestCase
         ]);
     }
 
+    /** @test */
+    public function can_delete_a_book()
+    {
+        $book = Book::factory()->create();
+
+        $response = $this->deleteJson(route('books.destroy', $book));
+
+        $response->assertNoContent();
+
+        $this->assertDatabaseCount('books', 0);
+    }
+
+
 }
