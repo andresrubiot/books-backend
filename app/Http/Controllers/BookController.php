@@ -39,7 +39,7 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Book $book)
+    public function update(CreateBookRequest $request, Book $book)
     {
         $book->title = $request->input('title');
         $book->save();

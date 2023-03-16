@@ -63,6 +63,16 @@ class BooksApiTest extends TestCase
     }
 
     /** @test */
+    public function a_book_cannot_be_updated_without_a_title()
+    {
+        $book = Book::factory()->create();
+
+        $response = $this->patchJson(route('books.update', $book), []);
+
+        $response->assertJsonValidationErrorFor('title');
+    }
+
+    /** @test */
     public function can_update_a_book()
     {
         $book = Book::factory()->create();
