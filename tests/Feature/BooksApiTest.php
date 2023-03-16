@@ -36,6 +36,14 @@ class BooksApiTest extends TestCase
             'title' => $book->title
         ]);
     }
+    /** @test */
+    public function a_book_cannot_be_created_without_a_title()
+    {
+        $response = $this->postJson(route('books.store', []));
+
+        $response->assertJsonValidationErrorFor('title');
+    }
+
 
     /** @test */
     public function can_create_books()
@@ -51,7 +59,7 @@ class BooksApiTest extends TestCase
         $this->assertDatabaseHas('books', [
             'id' => 1,
             'title' => 'Test book'
-        ]); 
+        ]);
     }
 
 
